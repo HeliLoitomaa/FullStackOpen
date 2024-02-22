@@ -28,12 +28,13 @@ function App() {
     } else{
       personService.create(newPerson)
       .then(response => {
+        console.log("created person data=",response.data)
       setPersons(persons.concat(response.data))
       emptyNotificationAfter(`${newName} was added to phonebook`, 3000, false)  
       setNewName('')
       setNewPhone('')
       }).catch(error => {
-        emptyNotificationAfter(`${error.message} `, 5000, true) 
+        emptyNotificationAfter(`${error.response.data.error} `, 5000, true) 
       }) 
     
     } 
@@ -49,7 +50,7 @@ function App() {
     setNewFilter(event.target.value)
   }
   const handleDelete = (event) => {
-    const id = Number(event.target.value)  
+    const id = event.target.value  
     console.log("id==", id)  
     let person = persons.find((person) => person.id === id )  
     console.log(persons)  
@@ -58,33 +59,33 @@ function App() {
     if(!window.confirm(`Delete ${person.name}?`)){return}     
     personService.removeWithId(id)
     .then( (result) => {
-      if(result.status === 200){
-        emptyNotificationAfter(`${person.name} was deleted from phonebook`, 3000, false)  
+      if(result.status === 204){
         /*update*/
         fetchPersons()
+        emptyNotificationAfter(`${person.name} was deleted from phonebook`, 3000, false)          
       }      
     })
    
   }
 
 /*Helper methods */
-  const updatePerson = (person, newPerson) => {    
+  const updatePerson = (existing, newPerson) => {    
       if(window.confirm(`${newName} is already added to phonebook, replace the old number with new one?`)){
-        personService.updatePerson(person.id, newPerson)
+        personService.updatePerson(existing.id, newPerson)
         .then((result) => {
            /*update list*/
            fetchPersons()
            setNewName('')
            setNewPhone('')
-          if(result.status === 200){           
-            emptyNotificationAfter(`${person.name} phone number was updated`, 3000, false)              
+          if(result.status === 204){           
+            emptyNotificationAfter(`${existing.name} phone number was updated`, 3000, false)              
           }     
         }).catch(error => {
           /*update list*/
           fetchPersons()
           setNewName('')
           setNewPhone('')
-          emptyNotificationAfter(`${person.name} has already been removed from server`, 3000, true) 
+          emptyNotificationAfter(`${existing.name} has already been removed from server`, 3000, true) 
         })
       }    
   }
