@@ -1,4 +1,4 @@
-
+/* eslint react/prop-types: 0 */
 const Persons = ({persons, clickHandler}) => {  
     return (
         <ul style={{listStyle: "none"}}>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const Notification = ({message, error}) => {
     let stylename = 'notification'
     if(message === ''){

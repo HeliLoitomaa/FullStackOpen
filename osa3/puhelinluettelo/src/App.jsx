@@ -80,6 +80,7 @@ function App() {
           if(result.status === 204){           
             emptyNotificationAfter(`${existing.name} phone number was updated`, 3000, false)              
           }     
+        // eslint-disable-next-line no-unused-vars
         }).catch(error => {
           /*update list*/
           fetchPersons()
@@ -100,6 +101,7 @@ function App() {
       .then(response => {
         setPersons(response.data)
       }).catch(error => {
+        console.log(error)
         emptyNotificationAfter('Error getting data from server', 3000, true) 
       })
   }

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const PersonForm = ({onSubmit, nameValue, onNameChange, phoneValue, onPhoneChange}) => {
   return(
   <form onSubmit={onSubmit}>
