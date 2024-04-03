@@ -1,0 +1,16 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "cypress tests",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "author": "Heli Loitomaa",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^13.7.1",
+    "eslint-plugin-cypress": "^2.15.1"
+  }
+}

@@ -1,0 +1,10 @@
+
+POST http://localhost:3003/api/blogs HTTP/1.1
+Content-Type: application/json
+
+{ "title": "A CUP OF JO",
+  "author": "Joanna Goddard",
+  "url": "http://cupofjo.com/",
+  "likes": 0,
+  "userId": "65dcb78b494fc41a955cbacc"
+  }
